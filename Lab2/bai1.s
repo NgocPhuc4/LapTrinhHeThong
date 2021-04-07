@@ -7,9 +7,10 @@ output:
 .section .text
 	.globl _start
 _start:
-	movl $1, %edx
 	addl $48, output
 	subl $1, output
+	
+	movl $1, %edx
 	movl $output, %ecx
 	movl $4, %eax
 	movl $1, %ebx
