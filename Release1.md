@@ -48,6 +48,6 @@
 ![image](https://user-images.githubusercontent.com/62021009/118407981-9a582f00-b6ad-11eb-9385-bce46e006202.png)
 - Thì ta thấy muốn in ra dòng đúng thì hàm memcmp phải trả về 0 => chuỗi nhập vào và password phải giống nhau
 - Nhấp vào password thì hiển ra cho mình luôn:      
-![image](https://user-images.githubusercontent.com/62021009/118408072-fc189900-b6ad-11eb-947e-a72d27d3e6a5.png)
-=> password là: supersecret      
+![image](https://user-images.githubusercontent.com/62021009/118408072-fc189900-b6ad-11eb-947e-a72d27d3e6a5.png)            
+=> password là: supersecret         
 ![image](https://user-images.githubusercontent.com/62021009/118408097-18b4d100-b6ae-11eb-8c87-df8c2c2b26ac.png)
