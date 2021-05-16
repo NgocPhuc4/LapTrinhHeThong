@@ -30,4 +30,14 @@
 - Cho nên phải nhập số sao cho điều kiện của if là đúng.
 - Điều kiện thứ hai cho thấy chữ số hàng đơn vị phải là số 8
 - Điều kiện thứ nhất eax = 22 => binary: 0001 0110. Mà dạng này đã được chuyển sang BCD 4 bit, nên bây giờ chuyển ngược lại sang dạng hex thì ta được tổng của hàng chục và hàng đơn vị là 16, mà ta đã biết chữ số hàng đơn vị là 8 => chữ số hàng chục là 8 => số cần tìm là 88      
-![image](https://user-images.githubusercontent.com/62021009/118404886-1139fb80-b69f-11eb-87d6-b5b42ee930ac.png)
+![image](https://user-images.githubusercontent.com/62021009/118404886-1139fb80-b69f-11eb-87d6-b5b42ee930ac.png)      
+### hello
+- Chạy thử thì thấy chương trình bắt nhập username và password      
+![image](https://user-images.githubusercontent.com/62021009/118407238-12bcf100-b6aa-11eb-8354-7add47f9f54f.png)    
+- Sử dụng IDA Pro để xem mã giả       
+![image](https://user-images.githubusercontent.com/62021009/118407276-4861da00-b6aa-11eb-8205-aa98bee9ac4c.png)     
+- Ta thấy ban đầu chơng trình sẽ bắt mình nhập username, sau đó in ra dòng Hello + tên của mình đã nhập.
+- Ở đây thì chuỗi welcome = "Hello Phuc", password sẽ nằm ở mảng byte_402073 ở dòng 24, v4 sẽ là độ dài của password.
+- Dòng 24: vòng while dừng khi v4 = 0, điều kiện để vào vòng while là username + 5 = password, nếu đúng thì sẽ in hàm success
+- Như vậy, với username là Phuc thì password sẽ là: Umzh.       
+![image](https://user-images.githubusercontent.com/62021009/118407620-c96da100-b6ab-11eb-9da7-59091c2cb7bc.png)
