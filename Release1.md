@@ -40,4 +40,14 @@
 - Ở đây thì chuỗi welcome = "Hello Phuc", password sẽ nằm ở mảng byte_402073 ở dòng 24, v4 sẽ là độ dài của password.
 - Dòng 24: vòng while dừng khi v4 = 0, điều kiện để vào vòng while là username + 5 = password, nếu đúng thì sẽ in hàm success
 - Như vậy, với username là Phuc thì password sẽ là: Umzh.       
-![image](https://user-images.githubusercontent.com/62021009/118407620-c96da100-b6ab-11eb-9da7-59091c2cb7bc.png)
+![image](https://user-images.githubusercontent.com/62021009/118407620-c96da100-b6ab-11eb-9da7-59091c2cb7bc.png)     
+### nasm
+- Chạy thử thì thấy chương trình bắt nhập password    
+- ![image](https://user-images.githubusercontent.com/62021009/118407970-84e30500-b6ad-11eb-8746-d27a8edd5ad1.png)
+- Sử dụng IDA Pro để xem mã giả         
+![image](https://user-images.githubusercontent.com/62021009/118407981-9a582f00-b6ad-11eb-9385-bce46e006202.png)
+- Thì ta thấy muốn in ra dòng đúng thì hàm memcmp phải trả về 0 => chuỗi nhập vào và password phải giống nhau
+- Nhấp vào password thì hiển ra cho mình luôn:      
+![image](https://user-images.githubusercontent.com/62021009/118408072-fc189900-b6ad-11eb-947e-a72d27d3e6a5.png)
+=> password là: supersecret      
+![image](https://user-images.githubusercontent.com/62021009/118408097-18b4d100-b6ae-11eb-8c87-df8c2c2b26ac.png)
