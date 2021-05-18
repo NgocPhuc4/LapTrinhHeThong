@@ -75,9 +75,9 @@
 ![image](https://user-images.githubusercontent.com/62021009/118662392-28512880-b81a-11eb-92de-350d66ae5bcf.png)
 - Nhìn vào thì ta biết mình cần phải làm cho điều kiện hàm if thoả mãn để có thể in ra dòng số 10.
 - Ở đây ta thấy kiểu dword cũng có kích thước 4 byte, cho nên điều kiện của hàm if sẽ là:     
-    serial[3,4,5,6] = giá trị tại ô nhớ từ 4020A0 đến 4020A3
-    serial[8,9,10,11] = giá trị tại ô nhớ từ 4020A4 đến 4020A7
-    serial[2, 7] = 45 (kí tự '-')
+    - serial[3,4,5,6] = giá trị tại ô nhớ từ 4020A0 đến 4020A3
+    - serial[8,9,10,11] = giá trị tại ô nhớ từ 4020A4 đến 4020A7
+    - serial[2, 7] = 45 (kí tự '-')
 - Cho nên việc cần làm của ta chính là tìm giá trị của vùng nhớ từ 4020A0 đến 4020A4
 - Mà việc tính toán ở hàm int sub_401049() khá phức tạp và nó phụ thuộc phụ thuộc vào username đầu vào, nên ta sẽ debug để chương trình tính :)))
 - Với username nhập vào là NgocPhuc thì giá trị vùng nhớ 4020A0 đến 4020A7 là:      
