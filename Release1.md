@@ -40,7 +40,8 @@
 - Ở đây thì chuỗi welcome = "Hello Phuc", password sẽ nằm ở mảng byte_402073 ở dòng 24, v4 sẽ là độ dài của password.
 - Dòng 24: vòng while dừng khi v4 = 0, điều kiện để vào vòng while là username + 5 = password, nếu đúng thì sẽ in hàm success
 - Như vậy, với username là Phuc thì password sẽ là: Umzh.       
-![image](https://user-images.githubusercontent.com/62021009/118407620-c96da100-b6ab-11eb-9da7-59091c2cb7bc.png)     
+![image](https://user-images.githubusercontent.com/62021009/118407620-c96da100-b6ab-11eb-9da7-59091c2cb7bc.png)
+
 ### nasm
 - Chạy thử thì thấy chương trình bắt nhập password    
 - ![image](https://user-images.githubusercontent.com/62021009/118407970-84e30500-b6ad-11eb-8746-d27a8edd5ad1.png)
@@ -50,4 +51,36 @@
 - Nhấp vào password thì hiển ra cho mình luôn:      
 ![image](https://user-images.githubusercontent.com/62021009/118408072-fc189900-b6ad-11eb-947e-a72d27d3e6a5.png)            
 => password là: supersecret         
-![image](https://user-images.githubusercontent.com/62021009/118408097-18b4d100-b6ae-11eb-8c87-df8c2c2b26ac.png)
+![image](https://user-images.githubusercontent.com/62021009/118408097-18b4d100-b6ae-11eb-8c87-df8c2c2b26ac.png)   
+
+### keygen
+- Chạy thử thì thấy chương trình bắt nhập username và serial      
+![image](https://user-images.githubusercontent.com/62021009/118657973-26856600-b816-11eb-93ae-5c58e0e3f2b0.png)      
+- Sử dụng IDA Pro để xem mã giả của chương trình             
+![image](https://user-images.githubusercontent.com/62021009/118658189-5af92200-b816-11eb-9fb9-365c58e3d1db.png)
+- Đây là hàm start của chương trình, 3 dòng 5,6,7 in ra màn hình; dòng số 8 sẽ gọi hàm sub_4010F9(), ta sẽ xem hàm này làm gì       
+![image](https://user-images.githubusercontent.com/62021009/118658744-de1a7800-b816-11eb-9892-274102ac6905.png)
+- Từ dòng 5 đến dòng 9: đọc từ bàn phím username và serial và kiểm tra xem người dùng có nhập không, và ở trong hàm if ta thấy chương trình có gọi tới 3 hàm khác, kiểm tra từng hàm thì ta thấy hàm sub_401000() ở dòng 15 có in ra chuỗi mà ta cần hướng tới, chính vì vậy, ta sẽ cố gắng nhập serial làm sao để chương trình chạy vô hàm này       
+![image](https://user-images.githubusercontent.com/62021009/118659512-95af8a00-b817-11eb-98ee-5ebd31693b8c.png)
+- Trở lại hàm sub_4010F9(), ở dòng 11 ta thấy có gọi hàm sub_4010C0(), và sau khi hàm này thực hiện xong thì chương trình có so sánh v0 và 3, mục tiêu của ta là phải vô được hàm if này, nên giá trị sau khi thực hiện hàm sub_4010C0() của ecx phải là 3. Được rồi, vô hàm sub_4010C0() thôi       
+![image](https://user-images.githubusercontent.com/62021009/118659964-f50d9a00-b817-11eb-925b-9f09aadec5ce.png)
+- Ở đây ta thấy v1 chính là thanh ghi cl, vậy mục tiêu sau khi chạy xong vòng while thì v1 phải bằng 3
+- Trong hàm while ta thấy để tăng v1 thì có ở dòng 26 và ta phải tránh chui vào dòng 20 vì nó sẽ tăng các bit cao của thanh ghi ecx
+- Ở đây, ta chú ý, dòng số 8 sẽ gán v0 = địa chỉ của vùng nhớ unk_402050 là vùng nhớ chứa serial mà mình đã nhập. Tuy nhiên khi ta nhập chương trình sẽ đọc theo string mỗi kí tự là 1 byte, còn ở đây v0 là con trỏ nên sẽ có kích thước 4 byte. Cho nên mỗi lần dòng 27 thực hiện thì địa chỉ con trỏ trỏ đến sẽ tăng 4
+- Ta thấy để v1 = 3 thì phải lặp 3 lần, từ đây có thể suy ra chuỗi serial phải có 12 kí tự (3 lần tăng con trỏ: 3 * 4 = 12) và các giá trị serial[0], [4], [8] != 0; serial[12] = 0
+- Okie, bây giờ thì ecx = 3 và mình có thể vào vòng if dòng 12 rồi, ta sẽ vào xem hàm sub_401049()        
+![image](https://user-images.githubusercontent.com/62021009/118661892-c09add80-b819-11eb-9698-ead80f6eed8a.png)
+![image](https://user-images.githubusercontent.com/62021009/118661934-cdb7cc80-b819-11eb-9a92-6cace8275f27.png)
+- Hàm này tính toán khá phức tạp, nên mình sẽ qua hàm tiếp theo để xem các yêu cầu cần sau khi thực hiện hàm này là gì rồi quay lại hàm này sau      
+![image](https://user-images.githubusercontent.com/62021009/118662392-28512880-b81a-11eb-92de-350d66ae5bcf.png)
+- Nhìn vào thì ta biết mình cần phải làm cho điều kiện hàm if thoả mãn để có thể in ra dòng số 10.
+- Ở đây ta thấy kiểu dword cũng có kích thước 4 byte, cho nên điều kiện của hàm if sẽ là:     
+    serial[3,4,5,6] = giá trị tại ô nhớ từ 4020A0 đến 4020A3
+    serial[8,9,10,11] = giá trị tại ô nhớ từ 4020A4 đến 4020A7
+    serial[2, 7] = 45 (kí tự '-')
+- Cho nên việc cần làm của ta chính là tìm giá trị của vùng nhớ từ 4020A0 đến 4020A4
+- Mà việc tính toán ở hàm int sub_401049() khá phức tạp và nó phụ thuộc phụ thuộc vào username đầu vào, nên ta sẽ debug để chương trình tính :)))
+- Với username nhập vào là NgocPhuc thì giá trị vùng nhớ 4020A0 đến 4020A7 là:      
+![image](https://user-images.githubusercontent.com/62021009/118664689-e1fcc900-b81b-11eb-94e2-09bc07890a05.png)
+- Vậy thì serial cho NgocPhuc sẽ là 82-EA8E-A4DF (2 giá trị đầu tiên không có bất cứ yêu cầu nào, nên sẽ tuỳ ý)     
+![image](https://user-images.githubusercontent.com/62021009/118665136-41f36f80-b81c-11eb-928d-f66d5ee0a59d.png)
