@@ -69,7 +69,7 @@
 - Ở đây, ta chú ý, dòng số 8 sẽ gán v0 = địa chỉ của vùng nhớ unk_402050 là vùng nhớ chứa serial mà mình đã nhập. Tuy nhiên khi ta nhập chương trình sẽ đọc theo string mỗi kí tự là 1 byte, còn ở đây v0 là con trỏ nên sẽ có kích thước 4 byte. Cho nên mỗi lần dòng 27 thực hiện thì địa chỉ con trỏ trỏ đến sẽ tăng 4
 - Ta thấy để v1 = 3 thì phải lặp 3 lần, từ đây có thể suy ra chuỗi serial phải có 12 kí tự (3 lần tăng con trỏ: 3 * 4 = 12) và các giá trị serial[0], [4], [8] != 0; serial[12] = 0
 - Okie, bây giờ thì ecx = 3 và mình có thể vào vòng if dòng 12 rồi, ta sẽ vào xem hàm sub_401049()        
-![image](https://user-images.githubusercontent.com/62021009/118661892-c09add80-b819-11eb-9698-ead80f6eed8a.png)
+![image](https://user-images.githubusercontent.com/62021009/118661892-c09add80-b819-11eb-9698-ead80f6eed8a.png)         
 ![image](https://user-images.githubusercontent.com/62021009/118661934-cdb7cc80-b819-11eb-9a92-6cace8275f27.png)
 - Hàm này tính toán khá phức tạp, nên mình sẽ qua hàm tiếp theo để xem các yêu cầu cần sau khi thực hiện hàm này là gì rồi quay lại hàm này sau      
 ![image](https://user-images.githubusercontent.com/62021009/118662392-28512880-b81a-11eb-92de-350d66ae5bcf.png)
