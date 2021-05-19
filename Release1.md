@@ -131,4 +131,29 @@
 - Sau đó dòng 24, 25 tăng mỗi biến lên 1 đơn vị
 - Dòng 26 sẽ so sánh v3 xem có bằng với độ dài của username chưa. Và ta thấy dòng 28 cũng so sánh biến `_403039` với độ dài chuỗi username. Mục tiêu của ta là phải vô được hàm này, nên có thể suy ra rằng vòng while sẽ lặp 4 lần ứng với độ dài của username, và chuỗi password sẽ có 8 kí tự thoả mã với điều kiện dòng 22.
 - Với cách tính tương tự như trên, ta tính được password là: Qaibvcdd      
-![image](https://user-images.githubusercontent.com/62021009/118842355-55253e80-b8f3-11eb-90df-f2f6299bd9c8.png)
+![image](https://user-images.githubusercontent.com/62021009/118842355-55253e80-b8f3-11eb-90df-f2f6299bd9c8.png)     
+
+### S_Crack1
+- Chạy thử thì thấy chương trình như thế này      
+![image](https://user-images.githubusercontent.com/62021009/118857004-c23fd080-b901-11eb-899a-528744cf8be4.png)   
+- Sử dụng IDA Pro để xem mã giả chương trình
+- Và vào luôn hàm DialogFunc():    
+![image](https://user-images.githubusercontent.com/62021009/118857527-56119c80-b902-11eb-8ee2-ce402b7e14dc.png)     
+- Khi chạy chương trình thì đoạn này sẽ chạy trước, dòng 106 sẽ lấy chuỗi tên computer lưu vào String, ở đây tên computer của máy mình là DESKTOP-K5D0AGE
+- Dòng 107 sẽ gán dword_403346 bằng độ dài của của tên máy, dòng 109 sẽ gán v6 là tên của máy tính
+- Dòng 111 đến 116: sẽ gán giá trị tên máy tính vào dword_40333E. Tiếp theo ta sẽ vào đoạn code khi nhấn nút Check     
+![image](https://user-images.githubusercontent.com/62021009/118859442-6e82b680-b904-11eb-9fcb-057727e618a5.png)
+- Dòng 31, 32 sẽ mở Clipboard và gán v13 bằng nội dung của Clipboard (Clipboard ở đây chính là nơi lưu trữ nội dung mà ta copy hay cut)
+- Mục tiêu của ta là phải vào được dòng 53, cho nên v13 phải có nội dung khác rỗng
+- Dòng 35 đến 38 là gán dword_403233 = v13, dword_403342 = dword_40333E (tên máy tính), v15 là độ dài tên máy tính
+- Dòng 39 đến 44 v15 lần: trong vòng lặp sẽ tính giá trị cho dword_403342. Ta thấy để vào được dòng 53, thì phải né vòng if dòng 46 => dword_403342 = 0 sau khi thực hiện xong vòng do while. Mà muốn dword_403342 = 0 thì dword_403233 phải có giá trị giống với dword_403342 => chuỗi mình copy phải giống với tên máy tính.    
+![image](https://user-images.githubusercontent.com/62021009/118862768-4bf29c80-b908-11eb-86f8-307154084787.png)     
+![image](https://user-images.githubusercontent.com/62021009/118862839-5d3ba900-b908-11eb-9c31-787c41ac438a.png)    
+- Ta thấy chương trình đã mở thêm chức năng Register, giờ hãy xem hàm khi nhấn Register:    
+![image](https://user-images.githubusercontent.com/62021009/118863085-b0156080-b908-11eb-905f-61efad9e887c.png)      
+- Dòng 61 sẽ tạo 1 filename với tên là reg.key. Mục tiêu lần này là vào dòng 89. Cho nên không vào vòng if dòng 66 => file phải có ít nhất 8 kí tự.
+- Dòng 76 sẽ lưu toàn bộ nội dung của file vào biến v12.
+- Điều kiện của lệnh if dòng 87 phải sai => lpBuffer[0,3] ^ lpBuffer[4,7] = tên máy tính (sau khi debug thì giá trị là: 0x408) => lpBuffer có thể là 84000000
+- Cho nên tạo 1 file với tên là reg.key cùng thư mục với file KeyMe.exe với nội dung là 84000000.      
+![image](https://user-images.githubusercontent.com/62021009/118864094-d7b8f880-b909-11eb-9592-879a8c25a2e5.png)      
+![image](https://user-images.githubusercontent.com/62021009/118864176-eacbc880-b909-11eb-9bdb-73e947cfcb0f.png)
