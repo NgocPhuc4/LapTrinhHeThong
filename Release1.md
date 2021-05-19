@@ -127,4 +127,8 @@
 - Dòng 19 tăng giá trị byte cao của v1 lên bằng 'a' + v0
 - Dòng 20 tăng giá trị byte thấp của v1 lên 1 đơn vị
 - Sau đó dòng 22 so sánh v1 với 2 byte của password
-- Ở đây, với input là Phuc. Thì tại vòng lặp này Hibyte(v1)
+- Ở đây, với input là Phuc. Thì tại vòng lặp này, v1= 'P', Hibyte(v1) += v0 + 'a' => v1 = 'aP', lobyte(v1) = v1+1 => v1 = 'aQ' => pass[0,1] = 'Qa'   
+- Sau đó dòng 24, 25 tăng mỗi biến lên 1 đơn vị
+- Dòng 26 sẽ so sánh v3 xem có bằng với độ dài của username chưa. Và ta thấy dòng 28 cũng so sánh biến `_403039` với độ dài chuỗi username. Mục tiêu của ta là phải vô được hàm này, nên có thể suy ra rằng vòng while sẽ lặp 4 lần ứng với độ dài của username, và chuỗi password sẽ có 8 kí tự thoả mã với điều kiện dòng 22.
+- Với cách tính tương tự như trên, ta tính được password là: Qaibvcdd      
+![image](https://user-images.githubusercontent.com/62021009/118842355-55253e80-b8f3-11eb-90df-f2f6299bd9c8.png)
