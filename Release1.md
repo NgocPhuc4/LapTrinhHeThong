@@ -108,4 +108,23 @@
     - 9: = 2
     - Và tất cả các phần tử đều phải khác d
 - Okie giờ chỉ cần nhập 1 chuỗi thoả mãn các điều kiện trên là được. Có rất nhiều chuỗi, ở đây mình chọn: PhVf3z8MP2    
-![image](https://user-images.githubusercontent.com/62021009/118689962-c7354f00-b831-11eb-8fd5-bb16ba2eb25f.png)
+![image](https://user-images.githubusercontent.com/62021009/118689962-c7354f00-b831-11eb-8fd5-bb16ba2eb25f.png)      
+
+### crack_001     
+- Chạy thử thì thấy chương trình bắt nhập username và password     
+![image](https://user-images.githubusercontent.com/62021009/118837246-d3cbad00-b8ee-11eb-9892-699f1e8f17c4.png)     
+- Sử dụng IDA Pro để xem mã giả của chương trình thì ta thấy chương trình gồm 3 hàm chính và chuỗi cần in nằm ở hàm sub_4010FE, và hàm gọi sub_4010FE là hàm DialogFunc    
+![image](https://user-images.githubusercontent.com/62021009/118838442-e397c100-b8ef-11eb-8a22-01caf8bf04cc.png)    
+- Vào xem hàm DialogFunc()    
+![image](https://user-images.githubusercontent.com/62021009/118838684-1772e680-b8f0-11eb-9a03-7b3f5d30b7be.png)    
+- Dòng số 20 sẽ lấy giá trị của password và lưu vào String
+- Dòng số 21 sẽ lấy giá trị của username lưu vào byte_403014 và biến v6 sẽ lưu độ dài của username    
+- Dòng 22 ràng buộc username phải có độ dài tối thiểu là 3 kí tự
+- Vào hàm sub_4010FE() thôi      
+![image](https://user-images.githubusercontent.com/62021009/118839196-83554f00-b8f0-11eb-9a6a-41651b08a5eb.png)      
+- Dòng 12 sẽ gán giá trị v1 bằng với username[v0]
+- Từ dòng 13 đến 18 sẽ kiểm tra các giá trị, với input là "Phuc" thì đều không thoả các giá trị trên
+- Dòng 19 tăng giá trị byte cao của v1 lên bằng 'a' + v0
+- Dòng 20 tăng giá trị byte thấp của v1 lên 1 đơn vị
+- Sau đó dòng 22 so sánh v1 với 2 byte của password
+- Ở đây, với input là Phuc. Thì tại vòng lặp này Hibyte(v1)
