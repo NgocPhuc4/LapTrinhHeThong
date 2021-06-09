@@ -39,4 +39,14 @@
 - Sau khi debug thì ta thấy giá trị của v6 là 0x57 (W)    
 ![image](https://user-images.githubusercontent.com/62021009/121403272-ef255780-c984-11eb-91d2-533551218c60.png)
 - Chạy chương trình với W tìm được     
-![image](https://user-images.githubusercontent.com/62021009/121403670-5511df00-c985-11eb-88f6-b4b332a45e6d.png)
+![image](https://user-images.githubusercontent.com/62021009/121403670-5511df00-c985-11eb-88f6-b4b332a45e6d.png)   
+#CrackMe2 (cipher)
+- Chạy chương trình thì thấy chương trình yêu cầu nhập password     
+![image](https://user-images.githubusercontent.com/62021009/121408215-598cc680-c98a-11eb-8b31-a5ea1463fc0e.png)    
+- Sử dụng IDA Pro để xem mã giả    
+![image](https://user-images.githubusercontent.com/62021009/121408287-71fce100-c98a-11eb-84c4-82f67ba12fd4.png)     
+- Mục tiêu của ta là dòng 30, nghĩa là phải thoát vòng while. Mà để thoát vòng while thì ta phải vào được dòng 27 => v5 = 0 => chuỗi Buffer = HfyhgrgfgrlmYlc579
+- Dòng 21, 22: vòng lặp chạy từng kí tự của chuỗi buffer, mỗi vòng sẽ biến đổi kí tự để được chuỗi buffer đã suy ra ở trên. Vậy ta cần tìm chuỗi trước khi chạy vòng for này để nhập vào.
+- Sau một hồi chạy tay vất vả thì tìm được chuỗi ban đầu là: SubstitutionBox420     
+![image](https://user-images.githubusercontent.com/62021009/121408826-00716280-c98b-11eb-971f-6ca5a277d495.png)
+
