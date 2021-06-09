@@ -26,4 +26,17 @@
 - Và đây là kết quả      
 ![image](https://user-images.githubusercontent.com/62021009/121233067-6fcc5100-c8bc-11eb-9640-3a5ddbfdadff.png)    
 - Vậy "dont play" chính là chuỗi cần tìm     
-![image](https://user-images.githubusercontent.com/62021009/121233156-883c6b80-c8bc-11eb-836c-8695ed3902fc.png)
+![image](https://user-images.githubusercontent.com/62021009/121233156-883c6b80-c8bc-11eb-836c-8695ed3902fc.png)    
+### Justcrackme
+- Đầu tiên, kiểm tra xem loại của file thì thấy đây là file thực thi 64 bit trên linux
+![image](https://user-images.githubusercontent.com/62021009/121402321-f13ae680-c983-11eb-9120-bbb689077b42.png)
+- Chạy thử thì thấy chương trình yêu cầu nhập flag    
+![image](https://user-images.githubusercontent.com/62021009/121402433-16c7f000-c984-11eb-9bc1-202213a1ee4d.png)
+- Sử dụng IDA Pro để xem mã giả    
+![image](https://user-images.githubusercontent.com/62021009/121402516-2f380a80-c984-11eb-9fcf-5c1c19109054.png)
+- Mục tiêu của ta là sẽ vào được dòng 24. Để vào được ta phải làm sai điều kiện của vòng if. Hàm compare sẽ so sánh từng kí tự của flag nhập vào với v6 (nếu khác nhau sẽ trả về 1, ngược lại trả về 0, ở đây ta buộc  phải cho 2 chuỗi giống nhau).
+- Ta thấy dòng 20: v6 sẽ được tính toán bằng hàm compare với chuỗi đã cho s, ở đây ta sẽ debug để tìm nhanh được giá trị của v6.
+- Sau khi debug thì ta thấy giá trị của v6 là 0x57 (W)    
+![image](https://user-images.githubusercontent.com/62021009/121403272-ef255780-c984-11eb-91d2-533551218c60.png)
+- Chạy chương trình với W tìm được
+![image](https://user-images.githubusercontent.com/62021009/121403670-5511df00-c985-11eb-88f6-b4b332a45e6d.png)
