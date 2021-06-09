@@ -38,5 +38,5 @@
 - Ta thấy dòng 20: v6 sẽ được tính toán bằng hàm compare với chuỗi đã cho s, ở đây ta sẽ debug để tìm nhanh được giá trị của v6.
 - Sau khi debug thì ta thấy giá trị của v6 là 0x57 (W)    
 ![image](https://user-images.githubusercontent.com/62021009/121403272-ef255780-c984-11eb-91d2-533551218c60.png)
-- Chạy chương trình với W tìm được
+- Chạy chương trình với W tìm được     
 ![image](https://user-images.githubusercontent.com/62021009/121403670-5511df00-c985-11eb-88f6-b4b332a45e6d.png)
