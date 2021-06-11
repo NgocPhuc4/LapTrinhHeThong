@@ -64,7 +64,7 @@
 ![image](https://user-images.githubusercontent.com/62021009/121615360-e323bd80-ca8a-11eb-9900-9cf8053ed083.png)
 - Game over rồi :((( 
 - Giờ mình sẽ sử dụng IDA Pro để xem mã giả thế nào    
-- Đây là hàm main
+- Đây là hàm main     
 ![image](https://user-images.githubusercontent.com/62021009/121615422-0a7a8a80-ca8b-11eb-92ef-33273c26f04e.png)    
 - Ở đây có rất nhiều hàm con, tuy nhiên không cần quan tâm vì các hàm con này để in ra các hình trong console như nãy chúng ta đã thấy.
 - Chúng ta sẽ quan tâm tới dòng 21 vì hàm này sẽ lấy input từ màn hình của chúng ta.
