@@ -88,5 +88,5 @@
 - Chương trình đã hiển ra thông báo ở dòng 102 rồi, và giờ yêu cầu mình nhập key code:   
 ![image](https://user-images.githubusercontent.com/62021009/121617054-57139500-ca8e-11eb-82d3-07da2ca518c5.png)    
 - Tiếp tục xem mã giả, thấy chương trình đọc input đầu vào ở dòng 107 và so sánh với giá trị 788960, nếu bằng nhau sẽ vào dòng 109 :))
-![image](https://user-images.githubusercontent.com/62021009/121617155-92ae5f00-ca8e-11eb-8e5a-821c9c92b486.png)
+![image](https://user-images.githubusercontent.com/62021009/121617155-92ae5f00-ca8e-11eb-8e5a-821c9c92b486.png)     
 ==> OK
