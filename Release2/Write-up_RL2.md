@@ -123,5 +123,5 @@
 ![image](https://user-images.githubusercontent.com/62021009/121780687-ab705f00-cbcb-11eb-8a8f-3d3550d70911.png)    
 => Mạnh dạn đoán hàm này sẽ trả về độ dài của chuỗi ta nhập vào => Chuỗi ta nhập vào phải có độ dài là 18 => debug lại với input là 123456789012345678 thì thấy đã pass được vòng if và chạy đến vòng for    
 ![image](https://user-images.githubusercontent.com/62021009/121780747-f7230880-cbcb-11eb-82f2-6f89b5aa1f31.png)     
-- Vòng for từ dòng 7 đến dòng 11: sẽ kiểm tra từng kí tự của chuỗi mình nhập vào và so sánh với chuỗi `encrypted-c-string` => Đó cũng chính là chuỗi mình cần nhập.     
+- Vòng for từ dòng 7 đến dòng 11: sẽ kiểm tra từng kí tự của chuỗi mình nhập vào và so sánh với chuỗi `encrypted-c-string` (ấn vào v7 sẽ thấy chuỗi này) => Đó cũng chính là chuỗi mình cần nhập.     
 ![image](https://user-images.githubusercontent.com/62021009/121780408-55e78280-cbca-11eb-89a6-6cc849a37616.png)
