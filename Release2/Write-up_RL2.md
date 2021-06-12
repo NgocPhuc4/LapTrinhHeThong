@@ -124,4 +124,28 @@
 => Mạnh dạn đoán hàm này sẽ trả về độ dài của chuỗi ta nhập vào => Chuỗi ta nhập vào phải có độ dài là 18 => debug lại với input là 123456789012345678 thì thấy hàm trả về 18 và đã pass được vòng if và chạy đến vòng for    
 ![image](https://user-images.githubusercontent.com/62021009/121780747-f7230880-cbcb-11eb-82f2-6f89b5aa1f31.png)     
 - Vòng for từ dòng 7 đến dòng 11: sẽ kiểm tra từng kí tự của chuỗi mình nhập vào và so sánh với chuỗi `encrypted-c-string` (ấn vào v7 sẽ thấy chuỗi này) => Đó cũng chính là chuỗi mình cần nhập.     
-![image](https://user-images.githubusercontent.com/62021009/121780408-55e78280-cbca-11eb-89a6-6cc849a37616.png)
+![image](https://user-images.githubusercontent.com/62021009/121780408-55e78280-cbca-11eb-89a6-6cc849a37616.png)     
+### ZED-Crackme   
+- Chạy thử chương trình thì thấy chương trình báo lỗi
+![image](https://user-images.githubusercontent.com/62021009/121784620-1b3c1500-cbdf-11eb-95c8-59903db81dc1.png)
+- Dùng lệnh `strings` để liệt kê xem có chuỗi nào trong chương trình    
+![image](https://user-images.githubusercontent.com/62021009/121784645-47579600-cbdf-11eb-8b5c-97073e3b1c3b.png)
+![image](https://user-images.githubusercontent.com/62021009/121784657-59393900-cbdf-11eb-8a6d-b66a389f9fb3.png)
+![image](https://user-images.githubusercontent.com/62021009/121784664-6524fb00-cbdf-11eb-8d28-05093c3feccf.png)
+![image](https://user-images.githubusercontent.com/62021009/121784720-ba610c80-cbdf-11eb-9e11-7be0657a5084.png)
+![image](https://user-images.githubusercontent.com/62021009/121784725-c351de00-cbdf-11eb-9e10-6dbd925313ad.png)   
+- Ta cảm thấy dường như các từ tìm được đã bị cắt bớt (Ví dụ: tolower thì thiếu mất chữ 'r', This is a top secret thì thiếu 'is'), và ta thấy có chữ UPX, qua tìm hiểu thì thấy đây 1 phần mềm nén chương trình thực thi, ta sẽ sử dụng lệnh `$ upx -d ZED-Crackme-x64.bin` để giải nén chương trình thực thi.     
+![image](https://user-images.githubusercontent.com/62021009/121784823-6b67a700-cbe0-11eb-847b-c1084cd19b3d.png)     
+- Sau khi giải nén xong, ta chạy lại chương trình thì thấy yêu cầu nhập passphrase:     
+![image](https://user-images.githubusercontent.com/62021009/121784848-8e925680-cbe0-11eb-92ce-b3ffd904af23.png)    
+- Sử dụng IDA Pro để xem mã giả     
+![image](https://user-images.githubusercontent.com/62021009/121784868-ae297f00-cbe0-11eb-91de-5de68f411a92.png)
+![image](https://user-images.githubusercontent.com/62021009/121784875-bbdf0480-cbe0-11eb-9150-4b200484e2c9.png)    
+- Mục tiêu của ta là sẽ vào được dòng 44, để như vậy thì chuỗi s1 và s2 phải bằng nhau.
+- Ta thấy chuỗi s2 là chuỗi ta nhập vào, còn s1 được tính toán từ dòng 36 đến 42 và phụ thuộc vào biến v6 có giá trị là `AHi23DEADBEEFCOFFEE` nằm dòng 28.    
+- Ta viết 1 chương trình c++ như sau để tính giá trị s1     
+![image](https://user-images.githubusercontent.com/62021009/121784966-3f98f100-cbe1-11eb-8072-a7e99fce0f80.png)    
+- Ta được output `C(uiICD@CADDEBNEEDD`:      
+![image](https://user-images.githubusercontent.com/62021009/121784977-550e1b00-cbe1-11eb-894f-11c97ca16409.png)     
+- Chạy lại chương trình và nhập chuỗi trên:     
+![image](https://user-images.githubusercontent.com/62021009/121785003-766f0700-cbe1-11eb-80d0-eacfbe0b8a87.png)
