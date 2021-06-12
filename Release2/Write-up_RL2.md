@@ -89,4 +89,11 @@
 ![image](https://user-images.githubusercontent.com/62021009/121617054-57139500-ca8e-11eb-82d3-07da2ca518c5.png)    
 - Tiếp tục xem mã giả, thấy chương trình đọc input đầu vào ở dòng 107 và so sánh với giá trị 788960, nếu bằng nhau sẽ vào dòng 109 :))
 ![image](https://user-images.githubusercontent.com/62021009/121617155-92ae5f00-ca8e-11eb-8e5a-821c9c92b486.png)     
-==> OK
+==> OK     
+### find_password    
+- Chạy chương trình thì thấy chương trình yêu cầu nhập password
+
+
+
+- Sử dụng IDA Pro để xem mã giả của chương trình    
+
