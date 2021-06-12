@@ -117,6 +117,11 @@
 - Mục tiêu của ta là vào dòng 24 (để in ra chuỗi CORRECT)    
 - Để vào được dòng 24, thì ta cần điều kiện trong dòng 23 trả về true hay giá trị trả về của hàm `sub_211438(v7)` = 1, ta xem thử mã giả hàm này     
 ![image](https://user-images.githubusercontent.com/62021009/121779762-8843b080-cbc7-11eb-9b6c-8c2de740951d.png)     
-- Ta thấy được dòng 5: hàm `sub_211645()` sẽ trả về độ dài của chuỗi mình nhập vào => chuỗi mình nhập vào cần có độ dài bằng 18.
+- Dòng thứ 5 sẽ so sánh giá trị trả về của hàm `sub_211645` với 18, ta thử debug xem với input đầu vào là 123456 thì ta thấy hàm này trả về 6       
+![image](https://user-images.githubusercontent.com/62021009/121780647-7fed7480-cbcb-11eb-8f51-aad32c38bae7.png)
+- Với input đầu vào là 0123456789 thì hàm trả về 10     
+![image](https://user-images.githubusercontent.com/62021009/121780687-ab705f00-cbcb-11eb-8a8f-3d3550d70911.png)    
+=> Mạnh dạn đoán hàm này sẽ trả về độ dài của chuỗi ta nhập vào => Chuỗi ta nhập vào phải có độ dài là 18 => debug lại với input là 123456789012345678 thì thấy đã pass được vòng if và chạy đến vòng for    
+![image](https://user-images.githubusercontent.com/62021009/121780747-f7230880-cbcb-11eb-82f2-6f89b5aa1f31.png)     
 - Vòng for từ dòng 7 đến dòng 11: sẽ kiểm tra từng kí tự của chuỗi mình nhập vào và so sánh với chuỗi `encrypted-c-string` => Đó cũng chính là chuỗi mình cần nhập.     
 ![image](https://user-images.githubusercontent.com/62021009/121780408-55e78280-cbca-11eb-89a6-6cc849a37616.png)
