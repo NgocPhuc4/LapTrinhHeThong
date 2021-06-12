@@ -134,7 +134,7 @@
 ![image](https://user-images.githubusercontent.com/62021009/121784664-6524fb00-cbdf-11eb-8d28-05093c3feccf.png)
 ![image](https://user-images.githubusercontent.com/62021009/121784720-ba610c80-cbdf-11eb-9e11-7be0657a5084.png)
 ![image](https://user-images.githubusercontent.com/62021009/121784725-c351de00-cbdf-11eb-9e10-6dbd925313ad.png)   
-- Ta cảm thấy dường như các từ tìm được đã bị cắt bớt (Ví dụ: tolower thì thiếu mất chữ 'r', This is a top secret thì thiếu 'is'), và ta thấy có chữ UPX, qua tìm hiểu thì thấy đây 1 phần mềm nén chương trình thực thi, ta sẽ sử dụng lệnh `$ upx -d ZED-Crackme-x64.bin` để giải nén chương trình thực thi.     
+- Ta thấy ở dòng Info có dòng chương trình thực thi đã bị nén bởi UPX Packer, qua tìm hiểu thì thấy đây 1 phần mềm nén chương trình thực thi, ta sẽ sử dụng lệnh `$ upx -d ZED-Crackme-x64.bin` để giải nén chương trình thực thi.     
 ![image](https://user-images.githubusercontent.com/62021009/121784823-6b67a700-cbe0-11eb-847b-c1084cd19b3d.png)     
 - Sau khi giải nén xong, ta chạy lại chương trình thì thấy yêu cầu nhập passphrase:     
 ![image](https://user-images.githubusercontent.com/62021009/121784848-8e925680-cbe0-11eb-92ce-b3ffd904af23.png)    
