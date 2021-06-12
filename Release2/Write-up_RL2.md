@@ -92,8 +92,31 @@
 ==> OK     
 ### find_password    
 - Chạy chương trình thì thấy chương trình yêu cầu nhập password
-
-
-
+![image](https://user-images.githubusercontent.com/62021009/121779572-9513d480-cbc6-11eb-94e5-5e050f6713d7.png)    
+-	Sử dụng IDA Pro để xem mã giả      
+![image](https://user-images.githubusercontent.com/62021009/121779594-b83e8400-cbc6-11eb-8e1b-aa014efaa231.png)
+![image](https://user-images.githubusercontent.com/62021009/121779596-bbd20b00-cbc6-11eb-8585-982ba70512d6.png)      
+-	Chuỗi input đầu vào của chúng ta sẽ được lưu tại địa chỉ mà con trỏ Buf1 trỏ tới.
+-	Mục tiêu của ta là vào dòng 47, để vào được dòng 47 trước tiên ta phải thoát được vòng lặp do while từ dòng 35 đến 46.
+-	Ở đây ta có 2 vòng lặp do while, cho nên đầu tiên ta phải thoát được vòng lặp thứ nhất từ dòng 37 đến  44. Muốn thoát được vòng lặp này ta cần phải nhập sao cho size =v13, nghĩa là chiều dài đoạn mình nhập phải bằng v13. Debug để xem thử giá trị v13 này bằng bao nhiêu.
+-	Giá trị ebp hiện tại bằng 0x006CFEF8 => v13 = ebp – 0x34 = 0x006CFEC4    
+![image](https://user-images.githubusercontent.com/62021009/121779615-cbe9ea80-cbc6-11eb-943e-793e3846762b.png)   
+-	Đến địa chỉ trên thì ta thấy giá trị của v13 = 6. Vậy chuỗi chúng ta nhập vào sẽ có độ dài bằng 6
+-	Tiếp theo muốn thoát vòng lặp tiếp theo thì chuỗi Buf1 phải bằng 6 kí tự đầu của chuỗi Buf2. Ta tiếp tục kiểm tra xem chuỗi Buf2 này có giá trị như thế nào.     
+ ![image](https://user-images.githubusercontent.com/62021009/121779627-d7d5ac80-cbc6-11eb-9b73-2c51dc4d0af7.png)      
+-	Địa chỉ của Buf2 là = ebp -0x38 = 0x006CFEC0. Vì Buf2 là con trỏ nên sẽ lưu giá trị của 1 địa chỉ, đi đến địa chỉ 0x006CFEC8 thì ta được giá trị của chuỗi cần so sánh     
+ ![image](https://user-images.githubusercontent.com/62021009/121779634-e1f7ab00-cbc6-11eb-8394-6122d7ea5d27.png)     
+-	Vậy là chuỗi mình cần nhập vào là: djejie
+-	Tuy nhiên do vòng lặp do while (sẽ thực hiện trước rồi mới so sánh nên ban đầu cho dù nhập như thế nào thì vẫn sẽ in ra password sai), từ vòng 2 sẽ kiểm tra xem password có đúng không và in ra.      
+ ![image](https://user-images.githubusercontent.com/62021009/121779642-e91eb900-cbc6-11eb-9ead-83e28c4bb566.png)
+### no strings attached     
+- Chạy thử chương trình thì thấy chương trình yêu cầu mình nhập password    
+![image](https://user-images.githubusercontent.com/62021009/121779683-123f4980-cbc7-11eb-91a7-04fdd7cf51a1.png)    
 - Sử dụng IDA Pro để xem mã giả của chương trình    
-
+![image](https://user-images.githubusercontent.com/62021009/121779699-2b47fa80-cbc7-11eb-8fcf-30d5e0ed6316.png)     
+- Mục tiêu của ta là vào dòng 24 (để in ra chuỗi CORRECT)    
+- Để vào được dòng 24, thì ta cần điều kiện trong dòng 23 trả về true hay giá trị trả về của hàm `sub_211438(v7)` = 1, ta xem thử mã giả hàm này     
+![image](https://user-images.githubusercontent.com/62021009/121779762-8843b080-cbc7-11eb-9b6c-8c2de740951d.png)     
+- Ta thấy được dòng 5: hàm `sub_211645()` sẽ trả về độ dài của chuỗi mình nhập vào => chuỗi mình nhập vào cần có độ dài bằng 18.
+- Vòng for từ dòng 7 đến dòng 11: sẽ kiểm tra từng kí tự của chuỗi mình nhập vào và so sánh với chuỗi `encrypted-c-string` => Đó cũng chính là chuỗi mình cần nhập.     
+![image](https://user-images.githubusercontent.com/62021009/121780408-55e78280-cbca-11eb-89a6-6cc849a37616.png)
