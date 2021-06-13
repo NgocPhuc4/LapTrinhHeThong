@@ -143,7 +143,7 @@
 ![image](https://user-images.githubusercontent.com/62021009/121784875-bbdf0480-cbe0-11eb-9150-4b200484e2c9.png)    
 - Mục tiêu của ta là sẽ vào được dòng 44, để như vậy thì chuỗi s1 và s2 phải bằng nhau.
 - Ta thấy chuỗi s2 là chuỗi ta nhập vào, còn s1 được tính toán từ dòng 36 đến 42 và phụ thuộc vào biến v6 có giá trị là `AHi23DEADBEEFCOFFEE` nằm dòng 28.    
-- Ta viết 1 chương trình c++ như sau để tính giá trị s1     
+- Ta thấy từ dòng 31 đến 35, chương trình ngăn không cho ta debug (nếu phát hiện đang debug sẽ thoát chương trình) nên ta viết 1 chương trình c++ như sau để tính giá trị s1     
 ![image](https://user-images.githubusercontent.com/62021009/121784966-3f98f100-cbe1-11eb-8072-a7e99fce0f80.png)    
 - Ta được output `C(uiICD@CADDEBNEEDD`:      
 ![image](https://user-images.githubusercontent.com/62021009/121784977-550e1b00-cbe1-11eb-894f-11c97ca16409.png)     
