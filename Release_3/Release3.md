@@ -180,3 +180,19 @@ int main()
 ![image](https://user-images.githubusercontent.com/62021009/124387485-18799f00-dd09-11eb-8258-abbe588d9e52.png)
 - Kết quả chính là đoạn encrypted flag trong readme.txt      
 ---
+### crack_by_chrisK_v02    
+- Chạy thử chương trình:      
+![image](https://user-images.githubusercontent.com/62021009/124390846-9ba1f180-dd17-11eb-85f8-5b44b466bf5a.png)
+- Sử dụng IDA xem mã giả của chương trình, ta thấy hàm main như sau:           
+![image](https://user-images.githubusercontent.com/62021009/124390865-b96f5680-dd17-11eb-877f-ae66156b0c31.png)
+![image](https://user-images.githubusercontent.com/62021009/124390871-c5f3af00-dd17-11eb-81ff-50407680fb71.png)     
+- Mục tiêu của ta là sẽ in ra được `Nice!!` ở dòng 38.
+- Để vào được dòng 38 thì trước tiên ta phải vào được dòng 17, dòng 17 có 2 điều kiện, thứ nhất là chiều dài chuỗi password nhập vào phải lớn hơn 9 và phần tử thứ 6 phải bằng `.`
+- Ta thử nhập password là `Ngoc..Phuc` để xem liệu đã vào được vòng if chưa      
+![image](https://user-images.githubusercontent.com/62021009/124390956-4d412280-dd18-11eb-9613-01d250707679.png)     
+- Vậy là đã vào được dòng 17 rồi, tiếp theo chương trình yêu cầu nhập `password key`.
+- Ta thấy để vào được dòng 38 thì `password key` phải bằng `mstring`, mà chuỗi `mstring` được tính dựa trên chuỗi nhập vào
+- Đặt breakpoint và sau khi debug thì ta có được giá trị của `mstring` là `Jklb0/Mevg`      
+![image](https://user-images.githubusercontent.com/62021009/124391073-fd169000-dd18-11eb-8974-2b387a95e35d.png)     
+- Chạy lại chương trình:      
+![image](https://user-images.githubusercontent.com/62021009/124391102-26372080-dd19-11eb-9c62-174b735f6cb6.png)
