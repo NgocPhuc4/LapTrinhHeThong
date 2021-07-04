@@ -105,3 +105,27 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
 - Kết quả:     
 ![image](https://user-images.githubusercontent.com/62021009/124372629-da9f5b00-dcb5-11eb-88f6-3b701624c9de.png)      
 ------
+### ZED - Frequency
+- Chạy thử chương trình    
+![image](https://user-images.githubusercontent.com/62021009/124379780-2fa59600-dce3-11eb-9515-62d02a6f6f92.png)
+- Sử dụng IDA để xem mã giả của chương trình, đây là hàm main()    
+![image](https://user-images.githubusercontent.com/62021009/124379873-bfe3db00-dce3-11eb-95df-d7594f7d180f.png)
+![image](https://user-images.githubusercontent.com/62021009/124379881-d12ce780-dce3-11eb-9d88-7df82280f310.png)
+- Mục tiêu của ta là in được chuỗi `you succeed!!`, để in được chuỗi này thì `s1 = 01234567890123456789012345`, mà chuỗi s1 chính mã ascii của v8
+- Dòng 12 nếu khi chạy trình không nhập thêm tham số thì chương trình sẽ in ra dòng chữ và thoát
+- Dòng 17: chương trình sẽ đọc file với đường dẫn là tham số mình nhập vào
+- Vòng while từ dòng 20 đến 34: Điều kiện dừng vòng lặp: Khi đọc hết file v5
+    - Điều kiện dòng 25 sẽ kiểm tra xem kí tự trong v5 có phải là chữ hoa hay không
+    - Nếu là chữ hoa thì sẽ quy ước 'A' tương ứng với chỉ số 0, 'B' tương ứng với chỉ số 1,....
+    - Nếu là chữ thường thì tương tự: 'a' tương ứng với chỉ số 0, 'b' tương ứng với chỉ số 1.....
+    - v8 sẽ đếm số lần xuất hiện của các chữ cái theo quy ước ở trên, ví dụ A xuất hiện 3 lần thì v8[0] = 3....
+    - Như vậy, mảng v8 sẽ lưu tần suất xuất hiện của các chữ cái trong file
+-  Theo mảng s1 ở dòng 43 thì ta có thể suy ra được nội dung của file:
+    - A: xuất hiện 0 lần
+    - B: 1 lần...................
+- Tạo 1 file trong thư mục ZED-Frequency nội dung file như sau
+`BCCDDDEEEEFFFFFGGGGGGHHHHHHHIIIIIIIIJJJJJJJJJLMMNNNOOOOPPPPPQQQQQQRRRRRRRSSSSSSSSTTTTTTTTTVWWXXXYYYYZZZZZ`
+- Ở đây nội dung file có thể là khác nhau miễn đảm bảo được tần suất xuất hiện các chữ cái là chính xác.
+- Đặt tên file là `key.txt` và chạy thử chương trình:      
+![image](https://user-images.githubusercontent.com/62021009/124380403-a5f7c780-dce6-11eb-91ff-fd3484106aa3.png)
+---
