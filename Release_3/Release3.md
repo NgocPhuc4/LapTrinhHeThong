@@ -129,3 +129,54 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
 - Đặt tên file là `key.txt` và chạy thử chương trình:      
 ![image](https://user-images.githubusercontent.com/62021009/124380403-a5f7c780-dce6-11eb-91ff-fd3484106aa3.png)
 ---
+### fence
+- Trong thư mục ta thấy có 2 file trong thư mục: file readme.txt và file encryptor (file thực thi)
+- Nội dung của file readme.txt là:     
+![image](https://user-images.githubusercontent.com/62021009/124387179-b2d8e300-dd07-11eb-91c7-2b445891e8cf.png)     
+- Chạy thử chương trình:     
+![image](https://user-images.githubusercontent.com/62021009/124387197-cb48fd80-dd07-11eb-8d2a-79a13c9b3be7.png)     
+- Chương trình yêu cầu ta nhập thêm 1 tham số, nhập thêm tham số là `Phuc` và chạy lại:     
+![image](https://user-images.githubusercontent.com/62021009/124387237-ea478f80-dd07-11eb-933e-73e0d177f838.png)    
+- Ta có đoán: chương trình là một chương trình mã hoá tham số nhập vào, và yêu cầu của ta là tìm plaintext của encrypted flag đã được cho ở trong file readme.txt
+- Và từ output của chương trình khi nhập input là `Phuc` ta thấy chương trình mã hoá này chỉ đổi thứ tự của các kí tự từ chuỗi input nhập vào, chứ không thay đổi bất kì kí tự nào, do vậy không khó để có thể tìm được quy luật để mã hoá     
+- Ta lần lượt chạy thử chương trình với các input sau: `123456`, `1234567`, `12345678`, `123456789`      
+![image](https://user-images.githubusercontent.com/62021009/124387364-7f4a8880-dd08-11eb-968e-602122d3ba19.png)
+- Từ các output ở trên ta thấy quy luật như sau:
+    - Các kí tự có index chia hết cho 3: sẽ được đưa lên ở đầu ciphertext
+    - Tiếp theo là index chia 3 dư 1
+    - Và cuối cùng là index chia 3 dư 2
+- Ta viết 1 đoạn chương trình sau để tính input từ output dựa trên quy luật ở trên:
+```
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    string cipher = "arln_pra_dfgafcchsrb_l{ieeye_ea}";
+    string plaintext = "arln_pra_dfgafcchsrb_l{ieeye_ea}";
+    int i = 0, j = 2;
+    for (j = 2; j < cipher.length(); j += 3)
+    {
+        plaintext[j] = cipher[i];
+        i++;
+    }
+    for (j = 0; j < cipher.length(); j += 3)
+    {
+        plaintext[j] = cipher[i];
+        i++;
+    }
+    for (j = 1; j < cipher.length(); j += 3)
+    {
+        plaintext[j] = cipher[i];
+        i++;
+    }
+    cout << plaintext << endl;
+    return 0;
+}
+```
+- Và chạy đoạn chương trình trên ta được plaintext là: `flag{railfence_cyphers_are_bad_}`
+- Chạy thử chương trình với input vừa tìm được:    
+![image](https://user-images.githubusercontent.com/62021009/124387485-18799f00-dd09-11eb-8258-abbe588d9e52.png)
+- Kết quả chính là đoạn encrypted flag trong readme.txt      
+---
