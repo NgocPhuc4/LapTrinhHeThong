@@ -146,7 +146,7 @@ __int64 __fastcall main(int a1, char **a2, char **a3)
     - Tiếp theo là index chia 3 dư 1
     - Và cuối cùng là index chia 3 dư 2
 - Ta viết 1 đoạn chương trình sau để tính input từ output dựa trên quy luật ở trên:
-```
+```c++
 #include <iostream>
 
 using namespace std;
