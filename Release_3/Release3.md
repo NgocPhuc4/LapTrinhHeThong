@@ -1280,6 +1280,6 @@ LABEL_155:
 - Để `v6=6` thì chương trình sẽ chạy qua hết các case từ 1 đến 5 và tăng v6 lên 1 đơn vị mỗi khi qua hàm case, và để được như vậy thì ta thấy chương trình có so sánh input với `stopit`, chúng ta chạy thử với chương trình xem thế nào     
 ![image](https://user-images.githubusercontent.com/62021009/124452268-6eede880-ddb0-11eb-8216-07cc720f63c2.png)
 - Vẫn không có gì xảy ra cả. Tuy nhiên sau khi xem lại thì phát hiện có thêm một file mới nằm cùng thư mục, và nội dung của file như sau:     
-![image](https://user-images.githubusercontent.com/62021009/124452443-9775e280-ddb0-11eb-9a50-d5243dc47c61.png)
+![image](https://user-images.githubusercontent.com/62021009/124452443-9775e280-ddb0-11eb-9a50-d5243dc47c61.png)     
 --> Vậy là thành công rồi :)    
 --- 
