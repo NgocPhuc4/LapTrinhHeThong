@@ -1283,3 +1283,45 @@ LABEL_155:
 ![image](https://user-images.githubusercontent.com/62021009/124452443-9775e280-ddb0-11eb-9a50-d5243dc47c61.png)     
 --> Vậy là thành công rồi :)    
 --- 
+### XBS
+- Chạy thử chương trình:     
+![image](https://user-images.githubusercontent.com/62021009/124699535-2bf95580-df15-11eb-92c5-2b7a6f6a57e4.png)      
+- Sử dụng IDA để xem mã giả của chương trình:      
+![image](https://user-images.githubusercontent.com/62021009/124699602-4c291480-df15-11eb-8818-0a9b5d32d382.png)
+![image](https://user-images.githubusercontent.com/62021009/124699655-68c54c80-df15-11eb-919f-9e138b1dd8c8.png)
+![image](https://user-images.githubusercontent.com/62021009/124699730-8e525600-df15-11eb-834b-dc9f5f79f7cc.png)      
+- Mục tiêu của ta là in được chuỗi `Congrats!` dòng 63, và để có thể in được thì `v12 = 1073840184`, mà `v12` chính là tổng các phần tử của mảng `a`, ban đầu tất cả các phần tử mảng `a` đều bằng 0.
+- Chương trình sẽ lấy 5 input đầu vào (nếu chính xác).
+- Dòng 20 sẽ đọc đầu vào từ màn hình và giá trị `v4` sẽ lưu giá trị này
+- `v5` sẽ tính số bit cần dịch để lấy được bit 1 đầu tiên từ phải qua trái của `v4`. Ví dụ: nếu `v4=2` thì `v5=1` để lấy được bit 1 đầu tiên của `v4`
+- Dòng 35: gán `v8 = a[v5]`
+- Dòng 36 đến 42:
+    - Điều kiện vòng if: nếu v8 = 0 (nghĩa là `a[v5]` chưa được gán giá trị nào, thì sẽ bỏ qua vòng if
+    - Nếu v8 != 0 => nghĩa là `a[v5]` đã được gán giá trị, thì sẽ tăng biến `v7`, sau đó `v4 ^= v8`, sau đó tính lại `v5` ứng với giá trị mới và lại gán `v8 = a[v5]` .....
+- Dòng 49 đến 54: Đây là vòng if in ra chuỗi `Try again!` nên bằng mọi giá chúng ta phải né vòng if này. Điều kiện của vòng if:
+    - `v10 != 0`: `v10` chính là biểu thức bool được gán ở dòng 47.
+    - `v3 > 1`: `v3` chính là biến đếm theo input đầu vào..
+    => Như vậy với 2 lần nhập đầu tiên, thì điều kiện vòng if này sẽ luôn sai. Từ lần nhập thứ 3 trở đi thì điều kiện thứ 2 đúng, nên ta cần làm cho điều kiện thứ nhất sai => `v10 = 0` => `v7 >= 2`
+- Ý tưởng: nhập 2 số đầu tiên có tổng bằng `1073840184`, số thứ 3 sẽ có số bit bằng số thứ nhất hoặc số thứ 2 (ở đây sẽ lấy bằng số thứ nhất) => số thứ 2 phải ít bit hơn số thứ nhất => ` số thứ 3 = số thứ nhất ^ số thứ 2` => số thứ 4 và số thứ 5 sẽ bằng số thứ 3
+- Ở đây mình sẽ lấy ` số thứ nhất = 1073741880` (số có 31 bit)
+    - `v5 = 30`, `v6 = 0`, `v7 = 0`
+    - Dòng 35: `v8 = a[30] = 0`
+    - Dòng 45: `a[30] = v4 = 1073741880`
+    - Dòng 55: tăng biến đếm `v3=1`
+- Số thứ 2 mình sẽ nhập: `98304` (`= 1073840184 - 1073741880`) (số có 17 bit)
+    - `v5 = 16`, `v6 = 0`, `v7 = 0`
+    - Dòng 35: `v8 = a[16] = 0`
+    - Dòng 45: `a[16] = v4 = 98304`
+    - Dòng 55: tăng biến đếm `v3 = 2`
+- Số thứ 3: Mình sẽ nhập: `1073840184` (`1073741880 ^ 98304`) (số có 31 bit)
+    - `v5 = 30`, `v6 = 0`, `v7=0`
+    - Dòng 35: `v8 = a[30] = 1073741880`
+    - Dòng 36 đến 42: `v7=1`, `v4=98304`, `v6=1`, quay lại dòng 28
+    - `v5 = 16`, `v8 = a[16] = 98304`, `v7 = 2`, `v4 = 0`, `v6 = 1`, quay lại dòng 28
+    - Lúc này `v5 = 0` và nhảy đến dòng 47
+    - `v10 = 0` (do v7 = 2) => không vào vòng if dòng 49 được
+    - Tăng biến đếm `v3 = 3`
+- Số thứ 4 và thứ 5 nhập giống số thứ 3 và cách hoạt động giống như số thứ 3
+- Bây giờ mình sẽ nhập thử vào chương trình:     
+![image](https://user-images.githubusercontent.com/62021009/124702838-59490200-df1b-11eb-8d96-261e47a48945.png)
+---
