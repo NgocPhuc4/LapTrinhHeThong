@@ -93,8 +93,8 @@
 ![image](https://user-images.githubusercontent.com/62021009/118687823-a79d2700-b82f-11eb-8842-a94e460aa5af.png)       
 ![image](https://user-images.githubusercontent.com/62021009/118687893-baaff700-b82f-11eb-8277-06a1f7f54047.png)       
 - Nhìn vào thì ta thấy chương trình cần phải chạy làm sao để có thể chạy được dòng 76 => v1=10    
-- Dòng số 11 sẽ đọc input đầu vào từ bàn phím và sau đó chèn thêm kí tự d vào sau chuỗi input vừa nhập
-- Vòng while từ dòng 17 đến 27:  duyệt hết tất cả các kí tự input đầu vào, nếu như đến kí tự d (kí tự chèn vào sau) sẽ nhảy đến LABEL_32. Cho nên, nếu v1 chưa bằng 10 thì password nhập vào không được có kí tự d. Và xem qua thì cứ mỗi kí tự thì phải v1 sẽ được tăng lên 1 đơn vị, và phải tránh chui vào các hàm if để không bị trừ đi v1 (nếu bị trừ đi thì có khi chuỗi pass phải nhiều hơn 10 kí tự, ở đây cho nhanh sẽ làm pass với 10 kí tự)    
+- Dòng số 11 sẽ đọc input đầu vào từ bàn phím
+- Vòng while từ dòng 17 đến 27:  duyệt hết tất cả các kí tự input đầu vào, nếu như đến kí tự Enter sẽ nhảy đến LABEL_32. Cho nên, nếu v1 chưa bằng 10 thì password nhập vào không được có kí tự d. Và xem qua thì cứ mỗi kí tự thì phải v1 sẽ được tăng lên 1 đơn vị, và phải tránh chui vào các hàm if để không bị trừ đi v1 (nếu bị trừ đi thì có khi chuỗi pass phải nhiều hơn 10 kí tự, ở đây cho nhanh sẽ làm pass với 10 kí tự)    
 - Sau khi duyệt các hàm while và switch case thì điều kiện đối với password là:
     - 0: > G
     - 1: < m
@@ -106,7 +106,6 @@
     - 7: < N
     - 8: khác R
     - 9: = 2
-    - Và tất cả các phần tử đều phải khác d
 - Okie giờ chỉ cần nhập 1 chuỗi thoả mãn các điều kiện trên là được. Có rất nhiều chuỗi, ở đây mình chọn: PhVf3z8MP2    
 ![image](https://user-images.githubusercontent.com/62021009/118689962-c7354f00-b831-11eb-8fd5-bb16ba2eb25f.png)      
 
