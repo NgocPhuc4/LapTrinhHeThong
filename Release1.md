@@ -168,14 +168,14 @@
 ![image](https://user-images.githubusercontent.com/62021009/119013435-2b3a4d80-b9c1-11eb-8c75-a3f265300eed.png)
 - Dòng 24 đến dòng 27: sẽ lấy input đầu vào là username và serial; sau đó kiểm tra điều kiện String = 8 và byte_40307C >= 5. Sau khi đặt breakpoint để debug thì ta thấy String lưu serial và biến còn lại lưu username. Từ đây, ta thấy điều kiện đầu tiên cho username là phải có ít nhất 5 kí tự, còn của serial là phải có 8 kí tự.
 - Từ dòng 29 đến dòng 57: là hàng loạt các thao tác tính toán dựa trên username, và ta để ý thấy rằng giá trị cần sử dụng để vào dòng if 82 là dword_4030C8, cho nên ta cần phải biết ô nhớ này chứa giá trị gì. Và ta chỉ cần debug để chương trình tự tính dựa vào username
-- Sau khi debug với username là Layla thì dword_4030C8 có giá trị là: FD9C8887
+- Sau khi debug với username là Layla thì dword_4030C8 có giá trị là: 7888C9FD.
 - Tiếp theo từ dòng 58 đến dòng 81: hàm này sẽ kiểm tra từng kí tự của chuỗi serial có thuộc khoảng từ 0 đến F không? (0,1,2,3,4,5,6,7,8,9,A,B,C,D,E,F) => nếu thuộc khoảng này thì sẽ biểu diễn về dưới dạng hex (vì ban đầu nhập dưới dạng string nên giá trị sẽ tính theo bảng ascii). Chú ý là các kí tự chữ cái phải viết hoa nhé!! :))
-- Tiếp theo là hàm if: điều kiện trong hàm này cực ngoằn ngoèo, tuy nhiên phải đảm bảo điều kiện này đúng để có thể vào dòng 89. Hàm `_byteswap_ulong` sẽ đảo các bit của chuỗi đó (ví dụ: 1234 thành 4321) cho nên sẽ đảo các bit của dword_4030C8 lại cho dễ tính: 7888C9FD.
+- Tiếp theo là hàm if: điều kiện trong hàm này cực ngoằn ngoèo, tuy nhiên phải đảm bảo điều kiện này đúng để có thể vào dòng 89. Hàm `_byteswap_ulong` sẽ đảo các bit của chuỗi đó (ví dụ: 1234 thành 4321) cho nên sẽ đảo các bit của dword_4030C8 lại cho dễ tính: FDC988878.
 - Đoạn dịch 3 lần 8 bit ở sau cũng không cần quan tâm vì đơn giản giống như cộng số theo hàng chục hàng đơn vị vậy (ở đây lấy 1 lần 2 byte nên sẽ phải dịch 8 bit). Ta có thể suy ra được như sau:        
-((serial[7] + 16 * serial[6]) ^ 0xCD) - 17 = 0x78 => **serial[6,7] = 44** (ở đây ta thấy serial[7] + 16 * serial[6] giống như trong hệ dec thì serial[6] là hàng chục còn serial[7] là hàng đơn vị, nên khi tính tổng phải * 16 thay vì * 10 trong hệ dec)
+((serial[7] + 16 * serial[6]) ^ 0xCD) - 17 = 0x78 => **serial[6,7] = 44** (ở đây ta thấy serial[7] + 16 * serial[6] giống như trong hệ dec thì serial[6] là hàng chục còn serial[7] là hàng đơn vị, nên khi tính tổng phải * 16 thay vì * 10 trong hệ dec)      
 ((serial[5] + 16 * serial[4]) ^ 0x90) - 85 = 0x88 **=> serial[4,5] = 4d**      
 ((serial[3] + 16 * serial[2]) ^ 0x56) + 120 = 0xC9 **=>  serial[2,3] = 07**      
-((serial[1] + 16 * serial[0]) ^ 0x12) + 52 = FD **=> serial[0,1] = b9**      
+((serial[1] + 16 * serial[0]) ^ 0x12) + 52 = 0xFD **=> serial[0,1] = b9**      
 => serial cần tìm là B9074D44     
 ![image](https://user-images.githubusercontent.com/62021009/119017369-237ca800-b9c5-11eb-8045-7bab35473214.png)      
 => Done :))))
